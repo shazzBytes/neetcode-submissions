@@ -1,26 +1,26 @@
 class Solution:
 
     def encode(self, strs: List[str]) -> str:
-        eString = ""
+        eString = []
         # i am creating a header which would store the lengths of the string
         # then the header would end with $.
         # after that the strings would be just laid like that.
         for n in strs:
-            eString+= f"{len(n)}#"
-        eString+= "$"
+            eString.append(f"{len(n)}#")
+        eString.append("$")
         # header created. Now I can add the elements of the string
         for n in strs:
-            eString += n
-        return eString
+            eString.append(n)
+        return "".join(eString)
             
             
 
     def decode(self, s: str) -> List[str]:
         res = []
-        right = s.find("$")+1
+        right = s.find("$")
         lbuf = ""
         lens  = 0
-        nStart = right
+        nStart = right+1
         for n in range(right):
             if s[n] != "#":
                 lbuf+= s[n]
