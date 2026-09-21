@@ -2,12 +2,11 @@ class Solution:
 
     def encode(self, strs: List[str]) -> str:
         eString = ""
-        lens = [len(n) for n in strs]
         # i am creating a header which would store the lengths of the string
         # then the header would end with $.
         # after that the strings would be just laid like that.
-        for n in lens:
-            eString+= f"{n}#"
+        for n in strs:
+            eString+= f"{len(n)}#"
         eString+= "$"
         # header created. Now I can add the elements of the string
         for n in strs:
@@ -18,10 +17,10 @@ class Solution:
 
     def decode(self, s: str) -> List[str]:
         res = []
-        right = s.find("$")+1
+        right = s.find("$")
         lbuf = ""
         lens  = 0
-        nStart = right
+        nStart = right+1
         for n in range(right):
             if s[n] != "#":
                 lbuf+= s[n]
